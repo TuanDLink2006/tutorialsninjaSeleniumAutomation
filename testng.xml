@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite>
+<suite name="Suite">
+    <listeners>
+        <listener class-name="listeners.MyListeners" />
+    </listeners>
+    <test thread-count="5" name="Test">
+        <classes>
+            <class name="selenium.testcase.Register"/>
+            <class name="selenium.testcase.Login"/>
+            <class name="selenium.testcase.Logout"/>
+            <class name="selenium.testcase.Search"/>
+        </classes>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->
