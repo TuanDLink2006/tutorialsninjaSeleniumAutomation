@@ -55,8 +55,23 @@ public class MyListeners implements ITestListener {
     @Override
     public void onFinish(ITestContext context) {
         extentReport.flush();
-        System.out.println("Extent report generated at: " +
-                System.getProperty("user.dir") + "/target/reports/TNExtentReport.html");
+        String reportPath = System.getProperty("user.dir") + "/target/reports/TNExtentReport.html";
+        System.out.println("Extent report generated at: " + reportPath);
+
+        // Chỉ mở browser nếu chạy local (có GUI)
+        if (!isRunningOnJenkins()) {
+            try {
+                Desktop.getDesktop().browse(new File(reportPath).toURI());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
+
+    private boolean isRunningOnJenkins() {
+        String jenkinsEnv = System.getenv("JENKINS_HOME");
+        return jenkinsEnv != null; // nếu chạy Jenkins thì biến này tồn tại
+    }
+
 
 }
