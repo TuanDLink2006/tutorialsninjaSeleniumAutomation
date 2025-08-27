@@ -53,14 +53,10 @@ public class MyListeners implements ITestListener {
     }
 
     @Override
-    public void onFinish(ITestContext context){
+    public void onFinish(ITestContext context) {
         extentReport.flush();
-        File extentReportFile = new File(System.getProperty("user.dir") + "\\reports\\TNExtentReport.html");
-        try {
-            Desktop.getDesktop().browse(extentReportFile.toURI());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        System.out.println("Extent report generated at: " +
+                System.getProperty("user.dir") + "/target/reports/TNExtentReport.html");
     }
 
 }
